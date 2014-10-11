@@ -1,0 +1,45 @@
+> uncompress tar.xz
+  tar -xJf file.pkg.tar.xz
+> install Python 3
+
+  http://www.extellisys.com/articles/python-on-debian-wheezy
+
+> setup virtual env from python installation:
+  /usr/local/opt/python-3.4.1/bin/pyvenv virtualenv-3.4.1
+
+> fonts 
+
+  To browse the list of fonts use
+ 
+    fc-list :fontformat=TrueType -f "%{family}\n" | sort -u | less
+  
+  Test a font by specifyng in the xterm command -fa option
+   
+    xterm -fa 'Luxi Mono' -fs 10
+        
+  Where fa refers to the fonts face name, and fs, the font size.
+         
+  Once happy with your font, apply to your application in ~/.Xresources
+  For example to apply for XTerm
+          
+    ! my customisations
+    XTerm*faceName: DejaVu Sans Mono
+    XTerm*faceSize: 11
+                       
+  The final step is to set these resource changes using xrdb
+                        
+    xrdb -merge .Xresources
+
+> copying and pasting in xterm 
+  Linux geeks already know PRIMARY and CLIPBOARD and how to work with them. New
+  users can be confused. Xterm is a typical X Window application and users are 
+  supposed to select text into PRIMARY selection and paste it using middle mouse
+  click (or Control+Shift).
+
+  Triple click
+  This is important thing. By default clicking in xterm works in the following 
+  way:
+  - one click - nothing (you can drag or use the other button to select)
+  - double click - select word (only really something like a-zA-Z and _)
+  - triple click - whole line
+
