@@ -1,5 +1,52 @@
-> uncompress tar.xz
-  tar -xJf file.pkg.tar.xz
+> start tmux
+  $ tmux new -s basic
+
+> detach tmux session
+  CTRL-b d
+
+> list tmux sessions
+  $ tmux ls   /   tmux list-sessions
+
+> reattach tmux session
+  $ tmux attach
+
+> attach TO specific tmux session
+  $ tmux attach -t <session_name>
+
+> kill tmux session
+  $ tmux kill-session -t <session_name>
+
+> create new tmux session with named window
+  $ tmux new -s <session_name> -n <window_name>
+
+> rename tmux session
+  CTRL-b ,  # then rename the window
+
+> close tmux window
+  CTRL-b &  # confirmation will  be asked
+
+> split tmux window from the middle (vertically and starts new session in
+  pane created
+  CTRL-b %
+
+> split tmux pane horizontally
+  CTRL-b "
+
+> moving around tmux panes (cycle)
+  CTRL-o      /   or use CTRL-b <arrows>
+
+> cycle through default tmux pane layouts
+  CTRL-spacebar
+
+> kill tmux pane
+  CTRL-x
+
+> 
+
+>a uncompress tar.xz
+
+  $ tar -xJf file.pkg.tar.xz
+
 > install Python 3
 
   http://www.extellisys.com/articles/python-on-debian-wheezy
