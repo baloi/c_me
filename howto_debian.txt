@@ -41,7 +41,11 @@
 > kill tmux pane
   CTRL-x
 
-> 
+> create new named window from a current tmux window
+  CTRL-: new-window -n <window-name>
+
+> create new named window and running a command on that window
+  CTRL-: new-window -n <window-name> "command"
 
 >a uncompress tar.xz
 
