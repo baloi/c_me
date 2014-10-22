@@ -1,0 +1,13 @@
+
+
+
+      > My own database
+      > my own webserver
+      > unix utilities
+      > port of python stock app into C
+        - practice with communicating (reading) from a local webserver and print
+          what are read to console
+
+
+
+
