@@ -1,3 +1,6 @@
+> adding a public key to allow verification of outside sources
+  sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 94558F59
+
 > start tmux
   $ tmux new -s basic
 
