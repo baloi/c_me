@@ -1,6 +1,10 @@
 
 
 
+      > Text Editor!
+        - line editor
+        - cursor movement
+      
       > DDL with changing database
         - could use python and shell scripts (read Wolf)
       > Data receiving and plotting (Flot, Matlab....) 
