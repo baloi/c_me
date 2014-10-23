@@ -3,16 +3,21 @@
 #define MAXLEN   1000
 #define MAXLINES  1080
 
-int get_lines(char s[], int limit);
+int get_line(char s[], int limit);
+
+//==============================================================================
+//
+//      main() function for line_ed.c
+//
+//==============================================================================
 
 int main(int argc, char **argv)
 {
     int i, num_lines = 0;
     char line[MAXLEN];
 
-    while( (i = get_lines(line, MAXLEN) && i > 0)) {
-        printf("this shoould be printed\n");
-        printf(">>> %s\n", line);
+    while( (i = get_line(line, MAXLEN)) > 0 && num_lines < MAXLINES) {
+        printf(">>> %s", line);
     
         ++num_lines;
     }
@@ -20,28 +25,40 @@ int main(int argc, char **argv)
     return 0;
 }
 
-int get_lines(char line[], int limit) 
+
+//==============================================================================
+//
+//      int get_line(char line[], int limit)
+//              - inputs a line of characters, ended by '\n' with limit
+//              - characters are written to line[] array
+//
+//==============================================================================
+
+int get_line(char line[], int limit) 
 {
-    int i= 0;
+    int i=0;
+    int c; // the character inputted
 
-    char c;
-
-    while( (c = getchar()) != EOF 
-                && c != '\0' 
-                && i != limit 
+    while(i < limit-1
+                && (c = getchar()) != EOF 
+                //!ERROR start 
+                //&& c != '\0' // end character should not be in 
+                // input
+                //!ERROR end 
                 && c != '\n') {
         line[i] = c;
         ++i;
     }
 
     if (c == '\n') {
-        line[i] = '\n';
+        line[i] = c;
+        ++i;
     }
 
-    ++i;
     line[i] = '\0';
 
-    printf("getlines() returning %d\n", i);
+    //printf("contents of line >>>%s<<<", line);
+    //printf("get_line() returning %d\n", i);
     return i;
 }
 
