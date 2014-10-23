@@ -1,10 +1,14 @@
 
 
 
+      > DDL with changing database
+        - could use python and shell scripts (read Wolf)
+      > Data receiving and plotting (Flot, Matlab....) 
       > My own database
         - NOSQL or SQL
-      > my own webserver
-      > unix utilities
+      > My Own language (C and Python)
+      > my own webserver (C)
+      > unix utilities (in C)
 
 
 
