@@ -10,6 +10,7 @@ char *lineptr[MAXLINES];
 
 int get_line(char s[], int limit);
 int readlines(char *lineptr[], int maxlines);
+void write_lines(char *lineptr[], int num_lines);
 
 //==============================================================================
 //
@@ -23,15 +24,39 @@ int main(int argc, char **argv)
 
     if ( (num_lines = readlines(lineptr, MAXLINES)) >= 0) {
         // something was read....
-        printf( "GOT THIS: \n%s \n", *lineptr);
+        //printf( "GOT THIS: \n%s \n", *lineptr);
+        write_lines(lineptr, num_lines);
     } else {
         printf("error: input too long or too short\n");
         return 1;
     }
 
+    
+
     return 0;
 }
 
+
+//==============================================================================
+//
+//      write_lines()
+//
+//==============================================================================
+
+void write_lines(char *lineptr[], int num_lines)
+{
+
+    int lines_written = 0;
+    int i;
+
+    for (i=0; i < num_lines; i++) {
+        printf(">>%s", lineptr[i]);
+    }
+
+    return lines_written;
+}
+
+//      write_lines() end
 
 //==============================================================================
 //
@@ -46,11 +71,12 @@ int readlines(char *lineptr[], int maxlines)
 
     nlines = 0;
 
-    p = (char *) malloc(4);
+    //p = (char *) malloc(4);
 
     while( (len = get_line(line, MAXLEN)) > 0) {
 
-        if (nlines >= maxlines || (p = (char *) realloc(p, le)) == NULL) {
+        //if (nlines >= maxlines || (p = (char *) realloc(p, len)) == NULL) {
+        if (nlines >= maxlines || (p = (char *) malloc(len)) == NULL) {
             return -1;
         }
         else {
