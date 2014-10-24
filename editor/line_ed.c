@@ -1,9 +1,15 @@
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
 #define MAXLEN   1000
 #define MAXLINES  1080
 
+// lineptr will be a pointer to all the lines read from input
+char *lineptr[MAXLINES];
+
 int get_line(char s[], int limit);
+int readlines(char *lineptr[], int maxlines);
 
 //==============================================================================
 //
@@ -13,17 +19,56 @@ int get_line(char s[], int limit);
 
 int main(int argc, char **argv)
 {
-    int i, num_lines = 0;
-    char line[MAXLEN];
+    int num_lines = 0;
 
-    while( (i = get_line(line, MAXLEN)) > 0 && num_lines < MAXLINES) {
-        printf(">>> %s", line);
-    
-        ++num_lines;
+    if ( (num_lines = readlines(lineptr, MAXLINES)) >= 0) {
+        // something was read....
+        printf( "GOT THIS: \n%s \n", *lineptr);
+    } else {
+        printf("error: input too long or too short\n");
+        return 1;
     }
 
     return 0;
 }
+
+
+//==============================================================================
+//
+//      int readlines(char *lineptr[], int maxlines) 
+//          - inputs lines of characters
+//          - lines are pointed by lineptr pointer to array
+//
+int readlines(char *lineptr[], int maxlines) 
+{
+    int len, nlines;
+    char *p, line[MAXLEN];
+
+    nlines = 0;
+
+    p = (char *) malloc(4);
+
+    while( (len = get_line(line, MAXLEN)) > 0) {
+
+        if (nlines >= maxlines || (p = (char *) realloc(p, le)) == NULL) {
+            return -1;
+        }
+        else {
+            line[len-1] = '\0'; /* delete newline */
+        }
+        printf(">>> %s", line);
+    
+        strcpy(p, line);
+
+        lineptr[++nlines] = p;
+    }
+
+    free(p);
+
+    return nlines;
+
+}
+// readlines function end
 
 
 //==============================================================================
@@ -62,3 +107,4 @@ int get_line(char line[], int limit)
     return i;
 }
 
+// get_line function end
