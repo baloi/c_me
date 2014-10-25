@@ -45,15 +45,11 @@ int main(int argc, char **argv)
 
 void write_lines(char *lineptr[], int num_lines)
 {
-
-    int lines_written = 0;
     int i;
 
     for (i=0; i < num_lines; i++) {
-        printf(">>%s", lineptr[i]);
+        printf("Got>>%s", lineptr[i]);
     }
-
-    return lines_written;
 }
 
 //      write_lines() end
@@ -81,15 +77,15 @@ int readlines(char *lineptr[], int maxlines)
         }
         else {
             line[len-1] = '\0'; /* delete newline */
+            strcpy(p, line);
+            lineptr[++nlines] = p;
+            printf(">>>%s", line);
         }
-        printf(">>> %s", line);
     
-        strcpy(p, line);
 
-        lineptr[++nlines] = p;
     }
 
-    free(p);
+    //free(p);
 
     return nlines;
 
@@ -105,7 +101,7 @@ int readlines(char *lineptr[], int maxlines)
 //
 //==============================================================================
 
-int get_line(char line[], int limit) 
+int get_line(char s[], int limit) 
 {
     int i=0;
     int c; // the character inputted
@@ -117,18 +113,18 @@ int get_line(char line[], int limit)
                 // input
                 //!ERROR end 
                 && c != '\n') {
-        line[i] = c;
+        s[i] = c;
         ++i;
     }
 
     if (c == '\n') {
-        line[i] = c;
+        s[i] = c;
         ++i;
     }
 
-    line[i] = '\0';
+    s[i] = '\0';
 
-    //printf("contents of line >>>%s<<<", line);
+    //printf("contents of s >>>%s<<<", line);
     //printf("get_line() returning %d\n", i);
     return i;
 }
