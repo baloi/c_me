@@ -71,7 +71,8 @@ int readlines(char *lineptr[], int maxlines)
     char *line = NULL;
     ssize_t read;
     // create a temporary array of characters where the value of line can be stored
-    char *temp_line[256]; 
+    //char *temp_line[256]; 
+    char *temp_line = NULL; 
 
     nlines = 0;
 
@@ -87,12 +88,13 @@ int readlines(char *lineptr[], int maxlines)
             // line. 'line' needs to be passed to strdup to duplicate the 
             // string as line is an address. Each time we go to this line
             // temp_line is pointing to a new address
-            *temp_line = strdup(line);
+            temp_line = strdup(line);
             //printf("temp_line now pointing to %d ", &temp_line);
 
             // lineptr[nlines] value is set to *temp_line
             // We are setting the value and not the address.
-            lineptr[nlines] = *temp_line;
+            //lineptr[nlines] = *temp_line;
+            lineptr[nlines] = temp_line;
             //printf("lineptr[%d] = %s\n", nlines, *temp_line);
             ++nlines;
         }
