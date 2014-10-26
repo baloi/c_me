@@ -46,9 +46,10 @@ int main(int argc, char **argv)
 void write_lines(char *lineptr[], int num_lines)
 {
     int i;
+    printf("Will now write %d lines...\n", num_lines);
 
     for (i=0; i < num_lines; i++) {
-        printf("Got>>%s", lineptr[i]);
+        printf(">%s", lineptr[i]);
     }
 }
 
@@ -60,33 +61,49 @@ void write_lines(char *lineptr[], int num_lines)
 //          - inputs lines of characters
 //          - lines are pointed by lineptr pointer to array
 //
+//==============================================================================
+
 int readlines(char *lineptr[], int maxlines) 
 {
-    int len, nlines;
-    char *p, line[MAXLEN];
+    //int len, nlines;
+    int nlines;
+    size_t  len;
+    char *line = NULL;
+    ssize_t read;
+    // create a temporary array of characters where the value of line can be stored
+    char *temp_line[256]; 
 
     nlines = 0;
 
-    //p = (char *) malloc(4);
 
-    while( (len = get_line(line, MAXLEN)) > 0) {
+    //while( (len = get_line(line, MAXLEN)) > 0) {
+    while( ( read  = getline(&line, &len, stdin)) != -1 && read != EOF) {
 
-        //if (nlines >= maxlines || (p = (char *) realloc(p, len)) == NULL) {
-        if (nlines >= maxlines || (p = (char *) malloc(len)) == NULL) {
+        if (nlines >= maxlines) {
             return -1;
         }
         else {
-            line[len-1] = '\0'; /* delete newline */
-            strcpy(p, line);
-            lineptr[++nlines] = p;
-            printf(">>>%s", line);
+            // the value of temp_line will be the value of duplicated string 
+            // line. 'line' needs to be passed to strdup to duplicate the 
+            // string as line is an address. Each time we go to this line
+            // temp_line is pointing to a new address
+            *temp_line = strdup(line);
+            //printf("temp_line now pointing to %d ", &temp_line);
+
+            // lineptr[nlines] value is set to *temp_line
+            // We are setting the value and not the address.
+            lineptr[nlines] = *temp_line;
+            //printf("lineptr[%d] = %s\n", nlines, *temp_line);
+            ++nlines;
         }
-    
 
     }
 
+    free(line);
+
     //free(p);
 
+    //printf("read %d lines...\n", nlines);
     return nlines;
 
 }
