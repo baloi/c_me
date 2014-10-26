@@ -1,0 +1,75 @@
+/usr/include/i386-linux-gnu/bits/stdio2.h:222:     __wur __warnattr ("please use fgets or getline instead, gets can't "
+/usr/include/i386-linux-gnu/bits/stdio.h:116:getline (char **__lineptr, size_t *__n, FILE *__stream)
+/usr/include/c++/4.7/ext/vstring.tcc:611:	      // 91. Description of operator>> and getline() for string<>
+/usr/include/c++/4.7/ext/vstring.tcc:627:    getline(basic_istream<_CharT, _Traits>& __in,
+/usr/include/c++/4.7/ext/vstring.tcc:687:	      // 91. Description of operator>> and getline() for string<>
+/usr/include/c++/4.7/ext/vstring.h:2513:    getline(basic_istream<_CharT, _Traits>& __is,
+/usr/include/c++/4.7/ext/vstring.h:2533:    getline(basic_istream<_CharT, _Traits>& __is,
+/usr/include/c++/4.7/ext/vstring.h:2535:    { return getline(__is, __str, __is.widen('\n')); }      
+/usr/include/c++/4.7/bits/basic_string.h:2774:    getline(basic_istream<_CharT, _Traits>& __is,
+/usr/include/c++/4.7/bits/basic_string.h:2792:    getline(basic_istream<_CharT, _Traits>& __is,
+/usr/include/c++/4.7/bits/basic_string.h:2794:    { return getline(__is, __str, __is.widen('\n')); }
+/usr/include/c++/4.7/bits/basic_string.h:2798:    getline(basic_istream<char>& __in, basic_string<char>& __str,
+/usr/include/c++/4.7/bits/basic_string.h:2804:    getline(basic_istream<wchar_t>& __in, basic_string<wchar_t>& __str,
+/usr/include/c++/4.7/bits/istream.tcc:345:      // 243. get and getline when sentry reports failure.
+/usr/include/c++/4.7/bits/istream.tcc:402:    getline(char_type* __s, streamsize __n, char_type __delim)
+/usr/include/c++/4.7/bits/istream.tcc:446:      // 243. get and getline when sentry reports failure.
+/usr/include/c++/4.7/bits/istream.tcc:458:  // same "batchy" strategy used by getline above.
+/usr/include/c++/4.7/bits/basic_string.tcc:995:  // 21.3.7.9 basic_string::getline and operators
+/usr/include/c++/4.7/bits/basic_string.tcc:1055:	      // 91. Description of operator>> and getline() for string<>
+/usr/include/c++/4.7/bits/basic_string.tcc:1070:    getline(basic_istream<_CharT, _Traits>& __in,
+/usr/include/c++/4.7/bits/basic_string.tcc:1119:	      // 91. Description of operator>> and getline() for string<>
+/usr/include/c++/4.7/bits/basic_string.tcc:1143:    getline(basic_istream<char>&, string&, char);
+/usr/include/c++/4.7/bits/basic_string.tcc:1146:    getline(basic_istream<char>&, string&);
+/usr/include/c++/4.7/bits/basic_string.tcc:1158:    getline(basic_istream<wchar_t>&, wstring&, wchar_t);
+/usr/include/c++/4.7/bits/basic_string.tcc:1161:    getline(basic_istream<wchar_t>&, wstring&);
+/usr/include/c++/4.7/istream:414:      getline(char_type* __s, streamsize __n, char_type __delim);
+/usr/include/c++/4.7/istream:422:       *  Returns @c getline(__s,__n,widen(&apos;\\n&apos;)).
+/usr/include/c++/4.7/istream:425:      getline(char_type* __s, streamsize __n)
+/usr/include/c++/4.7/istream:426:      { return this->getline(__s, __n, this->widen('\n')); }
+/usr/include/c++/4.7/istream:617:    getline(char_type* __s, streamsize __n, char_type __delim);
+/usr/include/c++/4.7/istream:633:    getline(char_type* __s, streamsize __n, char_type __delim);
+/usr/include/c++/4.7/profile/impl/profiler_trace.h:504:	while (std::getline(__conf_file, __line))
+/usr/include/c++/4.7/streambuf:170:        getline(basic_istream<_CharT2, _Traits2>&,
+/usr/include/c++/4.7/string:45:#include <bits/localefwd.h>    // For operators >>, <<, and getline.
+/usr/include/c++/4.7/debug/string:1132:    getline(std::basic_istream<_CharT,_Traits>& __is,
+/usr/include/c++/4.7/debug/string:1135:      std::basic_istream<_CharT,_Traits>& __res = getline(__is,
+/usr/include/c++/4.7/debug/string:1144:    getline(std::basic_istream<_CharT,_Traits>& __is,
+/usr/include/c++/4.7/debug/string:1147:      std::basic_istream<_CharT,_Traits>& __res = getline(__is,
+/usr/include/c++/4.7.2/ext/vstring.tcc:611:	      // 91. Description of operator>> and getline() for string<>
+/usr/include/c++/4.7.2/ext/vstring.tcc:627:    getline(basic_istream<_CharT, _Traits>& __in,
+/usr/include/c++/4.7.2/ext/vstring.tcc:687:	      // 91. Description of operator>> and getline() for string<>
+/usr/include/c++/4.7.2/ext/vstring.h:2513:    getline(basic_istream<_CharT, _Traits>& __is,
+/usr/include/c++/4.7.2/ext/vstring.h:2533:    getline(basic_istream<_CharT, _Traits>& __is,
+/usr/include/c++/4.7.2/ext/vstring.h:2535:    { return getline(__is, __str, __is.widen('\n')); }      
+/usr/include/c++/4.7.2/bits/basic_string.h:2774:    getline(basic_istream<_CharT, _Traits>& __is,
+/usr/include/c++/4.7.2/bits/basic_string.h:2792:    getline(basic_istream<_CharT, _Traits>& __is,
+/usr/include/c++/4.7.2/bits/basic_string.h:2794:    { return getline(__is, __str, __is.widen('\n')); }
+/usr/include/c++/4.7.2/bits/basic_string.h:2798:    getline(basic_istream<char>& __in, basic_string<char>& __str,
+/usr/include/c++/4.7.2/bits/basic_string.h:2804:    getline(basic_istream<wchar_t>& __in, basic_string<wchar_t>& __str,
+/usr/include/c++/4.7.2/bits/istream.tcc:345:      // 243. get and getline when sentry reports failure.
+/usr/include/c++/4.7.2/bits/istream.tcc:402:    getline(char_type* __s, streamsize __n, char_type __delim)
+/usr/include/c++/4.7.2/bits/istream.tcc:446:      // 243. get and getline when sentry reports failure.
+/usr/include/c++/4.7.2/bits/istream.tcc:458:  // same "batchy" strategy used by getline above.
+/usr/include/c++/4.7.2/bits/basic_string.tcc:995:  // 21.3.7.9 basic_string::getline and operators
+/usr/include/c++/4.7.2/bits/basic_string.tcc:1055:	      // 91. Description of operator>> and getline() for string<>
+/usr/include/c++/4.7.2/bits/basic_string.tcc:1070:    getline(basic_istream<_CharT, _Traits>& __in,
+/usr/include/c++/4.7.2/bits/basic_string.tcc:1119:	      // 91. Description of operator>> and getline() for string<>
+/usr/include/c++/4.7.2/bits/basic_string.tcc:1143:    getline(basic_istream<char>&, string&, char);
+/usr/include/c++/4.7.2/bits/basic_string.tcc:1146:    getline(basic_istream<char>&, string&);
+/usr/include/c++/4.7.2/bits/basic_string.tcc:1158:    getline(basic_istream<wchar_t>&, wstring&, wchar_t);
+/usr/include/c++/4.7.2/bits/basic_string.tcc:1161:    getline(basic_istream<wchar_t>&, wstring&);
+/usr/include/c++/4.7.2/istream:414:      getline(char_type* __s, streamsize __n, char_type __delim);
+/usr/include/c++/4.7.2/istream:422:       *  Returns @c getline(__s,__n,widen(&apos;\\n&apos;)).
+/usr/include/c++/4.7.2/istream:425:      getline(char_type* __s, streamsize __n)
+/usr/include/c++/4.7.2/istream:426:      { return this->getline(__s, __n, this->widen('\n')); }
+/usr/include/c++/4.7.2/istream:617:    getline(char_type* __s, streamsize __n, char_type __delim);
+/usr/include/c++/4.7.2/istream:633:    getline(char_type* __s, streamsize __n, char_type __delim);
+/usr/include/c++/4.7.2/profile/impl/profiler_trace.h:504:	while (std::getline(__conf_file, __line))
+/usr/include/c++/4.7.2/streambuf:170:        getline(basic_istream<_CharT2, _Traits2>&,
+/usr/include/c++/4.7.2/string:45:#include <bits/localefwd.h>    // For operators >>, <<, and getline.
+/usr/include/c++/4.7.2/debug/string:1132:    getline(std::basic_istream<_CharT,_Traits>& __is,
+/usr/include/c++/4.7.2/debug/string:1135:      std::basic_istream<_CharT,_Traits>& __res = getline(__is,
+/usr/include/c++/4.7.2/debug/string:1144:    getline(std::basic_istream<_CharT,_Traits>& __is,
+/usr/include/c++/4.7.2/debug/string:1147:      std::basic_istream<_CharT,_Traits>& __res = getline(__is,
+/usr/include/stdio.h:671:extern _IO_ssize_t getline (char **__restrict __lineptr,
