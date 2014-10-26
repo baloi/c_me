@@ -89,7 +89,7 @@ int readlines(char *lineptr[], int maxlines)
             // string as line is an address. Each time we go to this line
             // temp_line is pointing to a new address
             temp_line = strdup(line);
-            //printf("temp_line now pointing to %d ", &temp_line);
+            //printf("temp_line now pointing to %zu ", temp_line);
 
             // lineptr[nlines] value is set to *temp_line
             // We are setting the value and not the address.
