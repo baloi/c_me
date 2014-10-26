@@ -72,13 +72,14 @@ int readlines(char *lineptr[], int maxlines)
     while( (len = get_line(line, MAXLEN)) > 0) {
 
         //if (nlines >= maxlines || (p = (char *) realloc(p, len)) == NULL) {
-        if (nlines >= maxlines || (p = (char *) malloc(len)) == NULL) {
+        //if (nlines >= maxlines || (p = (char *) malloc(len)) == NULL) {
+        if (nlines >= maxlines) {
             return -1;
         }
         else {
             line[len-1] = '\0'; /* delete newline */
-            strcpy(p, line);
-            lineptr[++nlines] = p;
+            //strcpy(p, line);
+            lineptr[++nlines] = strdup(line);
             printf(">>>%s", line);
         }
     
