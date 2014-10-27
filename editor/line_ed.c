@@ -101,16 +101,14 @@ int readlines(char *lineptr[], int maxlines)
             return -1;
         }
         else {
-            // the value of temp_line will be the value of duplicated string 
-            // line. 'line' needs to be passed to strdup to duplicate the 
-            // string as line is an address. Each time we go to this line
-            // temp_line is pointing to a new address
+            // The value of temp_line will be the value of duplicated string 
+            // line. 'line' needs to be passed to strdup to duplicate the string
+            // as line will be modified during each call to get_line. Each time
+            // we go to this line temp_line is pointing to a new address after
+            // strdup().
             temp_line = strdup(line);
             //printf("temp_line now pointing to %zu ", temp_line);
 
-            // lineptr[nlines] value is set to *temp_line
-            // We are setting the value and not the address.
-            //lineptr[nlines] = *temp_line;
             lineptr[nlines] = temp_line;
             //printf("lineptr[%d] = %s\n", nlines, *temp_line);
             ++nlines;
