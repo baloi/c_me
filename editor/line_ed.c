@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#define MAXLEN   1000
+#define MAXLEN   1080
 #define MAXLINES  1080
 
 // lineptr will be a pointer to all the lines read from input
@@ -14,7 +14,8 @@ void write_lines(char *lineptr[], int num_lines);
 
 //==============================================================================
 //
-//      main() function for line_ed.c
+//      main()::int 
+//          - main function for line_ed.c
 //
 //==============================================================================
 
@@ -35,11 +36,13 @@ int main(int argc, char **argv)
 
     return 0;
 }
-
+//  END main
 
 //==============================================================================
 //
-//      write_lines()
+//      write_lines(char *lineptr[], int num_lines)::void
+//          - Prints out lineptr contents
+//          - num_lines will be the number of lines printed.
 //
 //==============================================================================
 
@@ -52,8 +55,7 @@ void write_lines(char *lineptr[], int num_lines)
         printf(">%s", lineptr[i]);
     }
 }
-
-//      write_lines() end
+//  END write_lines
 
 //==============================================================================
 //
@@ -68,17 +70,32 @@ int readlines(char *lineptr[], int maxlines)
     //int len, nlines;
     int nlines;
     size_t  len;
-    char *line = NULL;
-    ssize_t read;
-    // create a temporary array of characters where the value of line can be stored
-    //char *temp_line[256]; 
+    //>>>>>> ORIG START >>>>>>>
+    //char *line = NULL;
+    //<<<<<< ORIG END <<<<<<<<<
+
+    //>>>>>> get_line START >>>>>>>>
+    char line[MAXLEN];
+    //<<<<<< get_line END <<<<<<<<<
+
+    //>>>>>> ORIG START >>>>>>>
+    //ssize_t read;
+    //<<<<<< ORIG END <<<<<<<<<
+    
+    // create a temporary array of characters where the value of line can be 
+    // stored
     char *temp_line = NULL; 
 
     nlines = 0;
 
 
-    //while( (len = get_line(line, MAXLEN)) > 0) {
-    while( ( read  = getline(&line, &len, stdin)) != -1 && read != EOF) {
+    //>>>>>> get_line START >>>>>>>>
+    while( (len = get_line(line, MAXLEN)) > 0) {
+    //<<<<<< get_line END <<<<<<<<<
+
+    //>>>>>> ORIG START >>>>>>>
+    //while( ( read  = getline(&line, &len, stdin)) != -1 && read != EOF) {
+    //<<<<<< ORIG END <<<<<<<<<
 
         if (nlines >= maxlines) {
             return -1;
@@ -101,15 +118,12 @@ int readlines(char *lineptr[], int maxlines)
 
     }
 
-    free(line);
+    //free(line);
 
-    //free(p);
-
-    //printf("read %d lines...\n", nlines);
     return nlines;
 
 }
-// readlines function end
+//  END readlines 
 
 
 //==============================================================================
@@ -124,6 +138,8 @@ int get_line(char s[], int limit)
 {
     int i=0;
     int c; // the character inputted
+
+    //printf(": ");
 
     while(i < limit-1
                 && (c = getchar()) != EOF 
@@ -147,5 +163,4 @@ int get_line(char s[], int limit)
     //printf("get_line() returning %d\n", i);
     return i;
 }
-
-// get_line function end
+//  END get_line 
