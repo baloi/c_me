@@ -92,7 +92,18 @@ int main(int argc, char *argv[])
     char *filename=argv[1];
     char action = argv[2][0];
 
+    // will open file. Only creates file if action is 'c'
     struct Connection *conn = Database_open(filename, action);
+
+    int id = 0;
+
+    if(argc >) id = atoi(argv[3]);
+    if(id >= MAX_ROWS) die("There's not that many records.");
+
+    switch(action) {
+
+
+    }
 
     Database_close(conn);
 
