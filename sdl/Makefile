@@ -1,21 +1,18 @@
-CXX = g++
-# Update these paths to match your installation
-# You may also need to update your linker option rpath, which sets where to 
-# look for the SDL2 libraries at runtime to match your install
-#
-SDL_LIB = -L/usr/local/lib -lSDL2 -Wl,-rpath=/usr/local/lib
-SDL_INCLUDE = -I/usr/local/include
-
-# You may need to change -std=c++11 to std=c++-x if your compiler is a bit
+CXX = g++-4.9
+SDL = -framework SDL2
+# You may need to change -std=c++11 to std=c++0x if your compiler is a bit
 # older
-CXXFLAGS = -Wall -c -std=c++11 $(SDL_INCLUDE)
-LDFLAGS = $(SDL_LIB)
-EXE = SDL_Lessonl0
+#CXXFLAGS = -Wall -c -std=c++0x -l /Library/Frameworks/SDL2.framework/Headers
+CXXFLAGS = -Wall -c -std=c++11 # -l /Library/Frameworks/SDL2.framework/Headers
+
+LDFLAGS = $(SDL)
+#LDFLAGS = $(SDL) -F /Library/Frameworks
+EXE = SDL_Lesson0
 
 all: $(EXE)
 
 $(EXE): main.o
-	$(CXX) $< $(LDFLAGS) -o $@
+	$(CXX) $(LDFLAGS) $< -o $@
 
 main.o: main.cpp
 	$(CXX) $(CXXFLAGS) $< -o $@
