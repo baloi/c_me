@@ -1,3 +1,6 @@
+> C++ testing framework
+  https://github.com/philsquared/Catch
+
 > unpack tar.bz2
   tar -jxf archive.tar.bz2
 
