@@ -84,6 +84,32 @@ void Database_close(struct Connection *conn)
     }
 }
 
+void Database_write(struct Connection *conn)
+{
+    // rewind function sets the file position indicator for the stream
+    // pointed by the stream to the beginning of the file. It is equivalent
+    // to (void)fseek(stream, 0L, SEEK_SET)
+    rewind(conn->file);
+    int rc = fwrite(conn->db, sizeof(struct Database), 1, conn->file);
+    if(rc != 1) die("Failed to write to database");
+
+    rc = fflush(conn->file);
+
+    if(rc == -1) die("Cannot flush database");
+}
+
+void Database_create(struct Connection *conn)
+{
+    int i = 0;
+
+    for (i = 0; i < MAX_ROWS; i++) {
+        // make a prototype to initialize it
+        struct Address addr = {.id = i, .set = 0};
+        // then just assign it
+        conn->db->rows[i] = addr;
+    }
+}
+
 
 int main(int argc, char *argv[])
 {
@@ -97,11 +123,15 @@ int main(int argc, char *argv[])
 
     int id = 0;
 
-    if(argc >) id = atoi(argv[3]);
+    if(argc > 3) id = atoi(argv[3]);
+
     if(id >= MAX_ROWS) die("There's not that many records.");
 
     switch(action) {
-
+        case 'c':
+            Database_create(conn);
+            Database_write(conn);
+            break;
 
     }
 
