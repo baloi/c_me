@@ -1,17 +1,22 @@
 
 
 
+
+      > My own database
+        - console access
+        - adding records with more columns (datastruct)
+        - create table (simple syntax, parse and create
+        - searching
+        - write and read DB to file
+        - Maybe use in ADHC messaging application
+      > my own webserver (C)
       > Text Editor!
         - line editor
         - cursor movement
       
       > DDL with changing database
         - could use python and shell scripts (read Wolf)
-      > Data receiving and plotting (Flot, Matlab....) 
-      > My own database
-        - NOSQL or SQL
       > My Own language (C and Python)
-      > my own webserver (C)
       > unix utilities (in C)
 
 

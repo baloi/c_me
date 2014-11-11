@@ -1,7 +1,14 @@
+
 > create a webserver
+
+> make my own text editor
+
+> create my own database application from the ground up
+
 > create a console application that accepts my commands and gives output like:
   - fetch pages and print out in "edited" format
   - fetch documents for me
   - semi web browser
+
 > monitors irc channels for activity
-> make my own text editor
+
