@@ -166,4 +166,9 @@ int add_string(hash_table_t *hashtable, char *str) {
     return 0;
 }
 
+/* remove a string from the hashtable */
+int delete_string(hash_table_t *hashtable, char *str) {
+    int i;
 
+    /* Look for string by iterating through the tashtable */
+}
