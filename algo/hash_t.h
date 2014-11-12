@@ -168,7 +168,56 @@ int add_string(hash_table_t *hashtable, char *str) {
 
 /* remove a string from the hashtable */
 int delete_string(hash_table_t *hashtable, char *str) {
-    int i;
 
-    /* Look for string by iterating through the tashtable */
+    list_t *list, *prev;
+    unsigned int hashval = hash(hashtable, str);
+    /* Look for string by iterating through the hashtable 
+     * and keep track of the list item that points to it.
+     */
+    // list would point to the list_t item
+    for(prev=NULL, list = hashtable->table[hashval]; 
+            list != NULL && strcmp(str, list->string); 
+            prev = list, list = list->next);
+    // remember that strcmp returns 0 if str is equal to list->str
+
+    /* if it wasn't found, return 1 as an error */
+    if (list == NULL) {
+        return 1;
+    }
+
+    
+    /* Otherwise, it exists. Remove it from table */
+    if (prev == NULL) {
+        hashtable->table[hashval] = list->next;
+    }
+    else {
+        // skip list and connect previous item in list to next 
+        prev->next = list->next;
+    }    
+
+
+    /* We have to free resources though */
+    free(list->string);
+    free(list);
+
+    return 0;
+}
+
+int count_strings(hash_table_t *hashtable) {
+    int i, count = 0;
+    list_t *list;
+
+    /* error check to make sure hashtable exists */
+    if (hashtable == NULL) {
+        return -1;
+    }
+
+    /* go through every index and count all list elements in each index */
+    for (i = 0; i < hashtable->size; ++i) {
+        for (list = hashtable->table[i]; list != NULL; list = list->next) {
+            count++;
+        }
+    }
+
+    return count;
 }
