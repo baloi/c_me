@@ -15,25 +15,25 @@ typedef struct _list_t_ {
 // Hash table structure
 typedef struct _hash_table_t_ {
     int size;        // the size of the table    
-    list_t **table;  // the table of elements
+    list_t **elements;  // the table of elements
 } hash_table_t;
 
 /* 
- * Why did we make the table as list_t **table? We do not know up front how big
- * we want the table to be. Therefore we need to make the table a dynamic array
- * . Remember that an array is just a big block of memory and is basically
+ * Why did we make elements as list_t **element? We do not know up front how big
+ * we want the table to be. Therefore we need to make elements a dynamic array.
+ * Remember that an array is just a big block of memory and is basically
  * synonymous with a pointer. What we have is a pointer to a pointer to a
- * linked list; thus list_t **table.
+ * linked list; thus list_t **elements
  */
 
 // basic operations:
-// 1. create a table
+// 1. create a table 
 // 2. be able to hash, thus a hash function
 // 3. be able to free a table
 // 4. be able to insert into table
 // 5. be able to lookup an element
 
-hash_table_t * create_hash_table(int size) {
+hash_table_t *create_hash_table(int size) {
     int i;
     hash_table_t *new_table;
 
@@ -44,14 +44,14 @@ hash_table_t * create_hash_table(int size) {
         return NULL;
     }
 
-    /* Attempt to allocate memory for the table itself */
-    if ( (new_table->table = malloc(sizeof(list_t *) * size)) == NULL) {
+    /* Attempt to allocate memory for the elements */
+    if ( (new_table->elements = malloc(sizeof(list_t *) * size)) == NULL) {
         return NULL;
     }
 
     /* Initializes the elements of the table */
     for (i=0; i < size; i++) {
-        new_table->table[i] = NULL;
+        new_table->elements[i] = NULL;
     }
 
     /* set the table's size */
@@ -71,7 +71,7 @@ unsigned int hash(hash_table_t *hashtable, char *str) {
 
     /* for each character, we multiply the old hash by 31 and add the current
      * character. Remember that shifting a number left is equivalent to
-     * multiplying it to 2 rasied to the number of places shifted. So we 
+     * multiplying it to 2 raised to the number of places shifted. So we 
      * are in effect multiplying hashval by 32 and then subtracting hashval.
      * Why do we do this? Because shifting and subtraction are much more 
      * efficient operations than multiplication.
@@ -98,7 +98,7 @@ void free_table(hash_table_t *hashtable) {
      * themselves
      */
     for (i=0; i < hashtable->size; i++) {
-        list = hashtable->table[i];
+        list = hashtable->elements[i];
         while(list != NULL) {
             temp = list;
             list = list->next;
@@ -108,7 +108,7 @@ void free_table(hash_table_t *hashtable) {
     }
 
     /* Free the table itself */
-    free(hashtable->table);
+    free(hashtable->elements);
     free(hashtable);
 }
 
@@ -125,7 +125,7 @@ list_t *lookup_string(hash_table_t *hashtable, char *str) {
      * list. If it is, return a pointer to the list element. If it isn't, the 
      * item isn't in the table so return NULL.
      */
-    for(list = hashtable->table[hashval]; list != NULL; list = list->next) {
+    for(list = hashtable->elements[hashval]; list != NULL; list = list->next) {
         if (strcmp(str, list->string) == 0) {
             return list;
         }
@@ -160,8 +160,8 @@ int add_string(hash_table_t *hashtable, char *str) {
 
     /* Insert into list */
     new_list->string = strdup(str);
-    new_list->next = hashtable->table[hashval];
-    hashtable->table[hashval] = new_list;
+    new_list->next = hashtable->elements[hashval];
+    hashtable->elements[hashval] = new_list;
 
     return 0;
 }
@@ -175,7 +175,7 @@ int delete_string(hash_table_t *hashtable, char *str) {
      * and keep track of the list item that points to it.
      */
     // list would point to the list_t item
-    for(prev=NULL, list = hashtable->table[hashval]; 
+    for(prev=NULL, list = hashtable->elements[hashval]; 
             list != NULL && strcmp(str, list->string); 
             prev = list, list = list->next);
     // remember that strcmp returns 0 if str is equal to list->str
@@ -188,7 +188,7 @@ int delete_string(hash_table_t *hashtable, char *str) {
     
     /* Otherwise, it exists. Remove it from table */
     if (prev == NULL) {
-        hashtable->table[hashval] = list->next;
+        hashtable->elements[hashval] = list->next;
     }
     else {
         // skip list and connect previous item in list to next 
@@ -214,7 +214,7 @@ int count_strings(hash_table_t *hashtable) {
 
     /* go through every index and count all list elements in each index */
     for (i = 0; i < hashtable->size; ++i) {
-        for (list = hashtable->table[i]; list != NULL; list = list->next) {
+        for (list = hashtable->elements[i]; list != NULL; list = list->next) {
             count++;
         }
     }
