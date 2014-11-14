@@ -8,6 +8,10 @@
 #define MAX_DATA 512
 #define MAX_ROWS 100
 
+/*
+ * http://c.learncodethehardway.org/book/ex17.html
+ *
+ */
 struct Address {
     int id;
     int set;
@@ -110,6 +114,20 @@ void Database_create(struct Connection *conn)
     }
 }
 
+void Address_print(struct Address *addr) {
+    printf("%d %s %s\n",
+            addr->id, addr->name, addr->email);
+}
+
+void Database_get(struct Connection *conn, int id) {
+    struct Address *addr = &conn->db->rows[id];
+    if (addr->set) {
+        Address_print(addr);
+    } else {
+        die ("ID is not set");
+    }
+}
+
 
 #ifndef TEST
 
@@ -134,7 +152,10 @@ int main(int argc, char *argv[])
             Database_create(conn);
             Database_write(conn);
             break;
-
+        case 'g':
+            if (argc != 4) die("Need an id to get");
+            Database_get(conn, id);
+            break;
     }
 
     Database_close(conn);
