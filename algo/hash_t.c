@@ -39,7 +39,7 @@ int main(int argc, char **argv) {
     }
 
     num_items = count_strings(my_hashtable); 
-    printf("Number of items in hashtable = %d\n", num_items);
+    printf("Number of items in hashtable = %d\n\n", num_items);
 
     free_table(my_hashtable);
 
