@@ -1,9 +1,12 @@
 
+> create my own database application from the ground up
+  - has console to enter data and read data
+
 > create a webserver
 
-> make my own text editor
+> algorithms
 
-> create my own database application from the ground up
+> make my own text editor
 
 > create a console application that accepts my commands and gives output like:
   - fetch pages and print out in "edited" format
