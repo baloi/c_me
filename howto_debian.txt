@@ -1,3 +1,8 @@
+> disassembly:
+  https://news.ycombinator.com/item?id=7143186
+  - objdump -d # on Linux
+  - otool -tV  # on Mac
+
 > download a webpage
   wget --recursive --no-clobber --page-requisites --html-extension --convert-links http://www.golang-book.com/
 > vim fuzzy search
