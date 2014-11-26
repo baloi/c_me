@@ -1,0 +1,16 @@
+> test_mystring.c
+  - test copy function
+> create squeeze function and test
+
+> deployed/adhc/app.py
+  this application should send local ip to deployed/app/
+
+  "dayprog.com/where"
+
+> dayprog.com
+  should receive a post request from adhc app and display it's local ip in
+  where:
+
+  @"where"
+  def where():
+
