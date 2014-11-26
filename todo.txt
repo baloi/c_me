@@ -1,5 +1,15 @@
+> tools:
+  - todo, goals, want
+  - Behaviour:
+    * parsable from files
+    * searches todos from all projects
+    * can add or delete todos in a central file?  (there should be a todo list
+      todo.txt and append this list to all todo's in other files - must have 
+      the location of todos in a grep-like format)
+
 > test_mystring.c
   - test copy function
+
 > create squeeze function and test
 
 > deployed/adhc/app.py
