@@ -3,12 +3,15 @@ CFLAGS=-Wall -g
 CLEANFILES = core core.* *.core *.o temp.* *.out typescript* \
 		*.lc *.lh *.bsdi *.sparc *.uw
 
-PROGS = hello ex6 ex14 ex8 ex9 ex15 ex16 ex17 ex18
+PROGS = hello ex6 ex14 ex8 ex9 ex15 ex16 ex17 ex18 wrong
 
 all: ${PROGS}
 
 hello: hello.o
 	${CC} ${CFLAGS} -o $@ hello.o
+
+wrong: wrong.o
+	${CC} ${CFLAGS} -o $@ wrong.o
 
 ex18: ex18.o
 	${CC} ${CFLAGS} -o $@ ex18.o
