@@ -6,3 +6,14 @@ void copy(char to[], char from[]) {
         i++;
     }
 }
+
+void squeeze(char unsqueezed[], int c) {
+    int i;
+    char temp;
+
+    for (i = 0; unsqueezed[i] != '\0'; i++) {
+        
+    }
+
+
+}
