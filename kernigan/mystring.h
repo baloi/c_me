@@ -7,13 +7,20 @@ void copy(char to[], char from[]) {
     }
 }
 
-void squeeze(char unsqueezed[], int c) {
-    int i;
-    char temp;
+void squeeze(char word[], int c) {
+    int i, j;
 
-    for (i = 0; unsqueezed[i] != '\0'; i++) {
-        
+    j = 0;
+
+    for (i = 0; word[i] != '\0'; i++) {
+        if (word[i] != c) {
+            word[j] = word[i];
+            j++;
+        }
     }
 
+    // to loop finishes when '\0' is found at the end of the character array
+    // so we have to add it ourselves
+    word[j] = '\0';
 
 }
