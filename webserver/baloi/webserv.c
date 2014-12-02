@@ -4,6 +4,7 @@
 #include <errno.h>
 #include <fcntl.h>
 #include <string.h>
+#include <sys/types.h>
 
 
 #define BUFSIZE 8096
@@ -32,7 +33,7 @@ struct {
 void logger(int type, char *s1, char *s2, int socket_fd) {
     int fd;
     char logbuffer[BUFSIZE*2];
-    const char *forbidden_msg = "HTTP/1.1 403 Forbidden\nContent-Length: 185\n"
+    const char forbidden_msg[] = "HTTP/1.1 403 Forbidden\nContent-Length: 185\n"
         "Connection: close\nContent-Type: text/html\n\n"
         "<html>head>\n<title>403 Forbidden</title>\n</head>"
         "<body>\n<h1>Forbidden</h1>\n"
@@ -57,6 +58,7 @@ void logger(int type, char *s1, char *s2, int socket_fd) {
              * return value of -1 indicates an error, with errno set 
              * appropriately.
              */
+            printf("\nwriting forbidden statement to socket_fd\n");
             (void)write(socket_fd, forbidden_msg, 271);
             break;
 
@@ -66,28 +68,46 @@ void logger(int type, char *s1, char *s2, int socket_fd) {
 void test_logger() {
     printf("\nTesting logger -- START\n");
    
+    int fd;
+    
+
     //TODO: create fd(file or dummy)
     //void logger(int type, char *s1, char *s2, int socket_fd) {
-    printf("Forbidden...\n");
-    logger(FORBIDDEN,"failed to read browser request","",fd);
+    printf("\nForbidden...\n");
+     
+    if( (fd = open("./test.txt", O_CREAT | O_RDWR | O_APPEND, 0644)) == -1) {
+        perror("\nCannot open test.txt\n");
+        exit(1);
+    }
+
+    logger(FORBIDDEN, "failed to read browser request", "", fd);
+
+    if (close(fd) == 0) {
+        printf("\nclosed fd successfully\n");
+    } else {
+        perror("\nproblem closing fd\n");
+        exit(1);
+    }
 
     printf("\nTesting logger -- END\n");
 }
 
 void run_tests() {
     test_logger();
-
-    return 0;
 }
 
 int main(int argc, char **argv) {
     int i, port, pid, listenfd, socketfd, hit;
 
     //printf("\nargv[1] = >>%s<<\n", argv[1]);
-    if (strcmp("test", argv[1]) == 0) {
-        printf("Running tests...\n");
-        run_tests();
-        return 0;
+    if (argc > 1) {
+        if (strcmp("test", argv[1]) == 0) {
+            printf("Running tests...\n");
+            run_tests();
+            return 0;
+        }
+    } else {
+        printf("\nargc <= 1\n"); 
     }
 
     return 0;
