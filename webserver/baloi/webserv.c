@@ -13,6 +13,12 @@
 #define FORBIDDEN 403
 #define NOTFOUND  404
 
+/*******************************************************************************
+ *                                                                             *
+ * Simple webserver in C                                                       *
+ *                                                                             *
+ ******************************************************************************/
+
 struct {
     char *ext;
     char *filetype;
@@ -30,10 +36,12 @@ struct {
     {"0", "0"},
 };
 
+
+
 void logger(int type, char *s1, char *s2, int socket_fd) {
     int fd;
     char logbuffer[BUFSIZE*2];
-    const char forbidden_msg[] = "HTTP/1.1 403 Forbidden\nContent-Length: 185\n"
+    const char *forbidden_msg = "HTTP/1.1 403 Forbidden\nContent-Length: 185\n"
         "Connection: close\nContent-Type: text/html\n\n"
         "<html>head>\n<title>403 Forbidden</title>\n</head>"
         "<body>\n<h1>Forbidden</h1>\n"
@@ -59,7 +67,7 @@ void logger(int type, char *s1, char *s2, int socket_fd) {
              * appropriately.
              */
             printf("\nwriting forbidden statement to socket_fd\n");
-            (void)write(socket_fd, forbidden_msg, 271);
+            (void)write(socket_fd, forbidden_msg, 270);
             break;
 
     }
