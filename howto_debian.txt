@@ -5,6 +5,7 @@
 
 > download a webpage
   wget --recursive --no-clobber --page-requisites --html-extension --convert-links http://www.golang-book.com/
+
 > vim fuzzy search
   - install CtrlP
   - then from vim
