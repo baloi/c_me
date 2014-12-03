@@ -43,10 +43,19 @@ void logger(int type, char *s1, char *s2, int socket_fd) {
     char logbuffer[BUFSIZE*2];
     const char *forbidden_msg = "HTTP/1.1 403 Forbidden\nContent-Length: 185\n"
         "Connection: close\nContent-Type: text/html\n\n"
-        "<html>head>\n<title>403 Forbidden</title>\n</head>"
+        "<html><head>\n<title>403 Forbidden</title>\n</head>"
         "<body>\n<h1>Forbidden</h1>\n"
         "The requested URL, file type or operation is not allowed in this"
         " simple static file webserver.\n</body></html>\n";
+
+        /*
+        "HTTP/1.1 403 Forbidden\nContent-Length: 185\n"
+        "Connection: close\nContent-Type: text/html\n\n"
+        "<html><head>\n<title>403 Forbidden</title>\n</head>"
+        "<body>\n<h1>Forbidden</h1>\n"
+        "The requested URL, file type or operation is not allowed on this"
+        " simple static file webserver.\n</body></html>\n";
+        */
 
     switch (type) {
         case ERROR:
@@ -67,7 +76,7 @@ void logger(int type, char *s1, char *s2, int socket_fd) {
              * appropriately.
              */
             printf("\nwriting forbidden statement to socket_fd\n");
-            (void)write(socket_fd, forbidden_msg, 270);
+            (void)write(socket_fd, forbidden_msg, 271);
             break;
 
     }
