@@ -47,15 +47,12 @@ void logger(int type, char *s1, char *s2, int socket_fd) {
         "<body>\n<h1>Forbidden</h1>\n"
         "The requested URL, file type or operation is not allowed in this"
         " simple static file webserver.\n</body></html>\n";
-
-        /*
-        "HTTP/1.1 403 Forbidden\nContent-Length: 185\n"
+    const char *notfound_msg = "HTTP/1.1 404 Not Found\nContent-Length: 136\n"
         "Connection: close\nContent-Type: text/html\n\n"
-        "<html><head>\n<title>403 Forbidden</title>\n</head>"
-        "<body>\n<h1>Forbidden</h1>\n"
-        "The requested URL, file type or operation is not allowed on this"
-        " simple static file webserver.\n</body></html>\n";
-        */
+        "<html><head>\n<title>404 Not Found</title>\n</head>"
+        "<body>\n<h1>Not Found</h1>\n"
+        "The requested URL was not found on this server.\n</body></html>\n";
+
 
     switch (type) {
         case ERROR:
@@ -77,9 +74,22 @@ void logger(int type, char *s1, char *s2, int socket_fd) {
              */
             printf("\nwriting forbidden statement to socket_fd\n");
             (void)write(socket_fd, forbidden_msg, 271);
+            
+            (void) sprintf(logbuffer, "FORBIDDEN: %s:%s", s1, s2);
             break;
-
+        case NOTFOUND:
+            (void)write(socket_fd, notfound_msg, 224);
+            (void)sprintf(logbuffer, "NOT FOUND: %s:%s", s1, s2);
+            break;
     }
+
+    if( (fd = open("web_test.log", O_CREAT | O_WRONLY | O_APPEND, 0644)) >= 0) {
+        (void)write(fd, logbuffer, strlen(logbuffer));
+        (void)write(fd, "\n", 1);
+        (void)close(fd);
+    } 
+
+    
 }
 
 void test_logger() {
@@ -97,7 +107,14 @@ void test_logger() {
         exit(1);
     }
 
+    printf("\nFORBIDDEN logger test\n");
     logger(FORBIDDEN, "failed to read browser request", "", fd);
+
+    printf("\nERROR logger test\n");
+    logger(ERROR, "system call","socket",0);
+
+    printf("\nNOT FOUND logger test\n");
+    logger(NOTFOUND, "not found error",
 
     if (close(fd) == 0) {
         printf("\nclosed fd successfully\n");
