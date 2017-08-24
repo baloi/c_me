@@ -1,1 +1,6 @@
 *.o
+webserver/webserv/*
+webserver/nweb.zip
+webserver/nweb.rtfd/*
+unix_network/*
+sdl/res/Lesson1/potrace.png

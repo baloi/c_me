@@ -114,7 +114,7 @@ void test_logger() {
     logger(ERROR, "system call","socket",0);
 
     printf("\nNOT FOUND logger test\n");
-    logger(NOTFOUND, "not found error",
+    logger(NOTFOUND, "not found error", "site not found", fd);
 
     if (close(fd) == 0) {
         printf("\nclosed fd successfully\n");
