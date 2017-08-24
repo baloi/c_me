@@ -1,0 +1,2 @@
+as ma_hello.s -o ma_hello.o
+ld ma_hello.o -e _main -o ma_hello
